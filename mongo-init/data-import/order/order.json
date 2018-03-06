@@ -1,0 +1,28 @@
+{
+  "customer": {
+    "id": "666",
+    "firstName": "name1",
+    "lastName": "lastname1",
+    "address": "address1",
+    "postCode": "80000",
+    "country": "Poland",
+    "city": "Gdansk"
+  },
+  "products": [
+    {
+      "id": "1234",
+      "name": "product1",
+      "price": 1234.12
+    },
+    {
+      "id": "1235",
+      "name": "product2",
+      "price": 1235.12
+    },
+    {
+      "id": "1236",
+      "name": "product3",
+      "price": 1236.12
+    }
+  ]
+}
