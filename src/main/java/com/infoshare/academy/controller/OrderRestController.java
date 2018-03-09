@@ -16,16 +16,17 @@ public class OrderRestController {
 	
 	@Autowired
 	private OrderRepository orderRepository;
-	
-	@RequestMapping("order/")
+
+
+	@RequestMapping(value = "order/", method = RequestMethod.GET)
 	public List<Order> findAll(){
 		final List<Order> customers = orderRepository.findAll();
 		log.info("Fetching customers from database {}" , customers);
 		return customers;
 	}
 
-	@RequestMapping("order/customer/{customerId}")
-	public List<Order> findAll(@PathVariable String customerId){
+	@RequestMapping(value = "order/customer/{customerId}", method = RequestMethod.GET)
+	public List<Order> findByCustomerId(@PathVariable String customerId){
 		final List<Order> customers = orderRepository.findAllByCustomerId(customerId);
 		log.info("Fetching customers from database {}" , customers);
 		return customers;
