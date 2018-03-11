@@ -20,22 +20,22 @@ public class OrderRestController {
 
 	@RequestMapping(value = "order/", method = RequestMethod.GET)
 	public List<Order> findAll(){
-		final List<Order> customers = orderRepository.findAll();
-		log.info("Fetching customers from database {}" , customers);
-		return customers;
+		final List<Order> orders = orderRepository.findAll();
+		log.info("Fetching orders from database {}" , orders);
+		return orders;
 	}
 
 	@RequestMapping(value = "order/customer/{customerId}", method = RequestMethod.GET)
 	public List<Order> findByCustomerId(@PathVariable String customerId){
-		final List<Order> customers = orderRepository.findAllByCustomerId(customerId);
-		log.info("Fetching customers from database {}" , customers);
-		return customers;
+		final List<Order> orders = orderRepository.findAllByCustomerId(customerId);
+		log.info("Fetching orders from database {}" , orders);
+		return orders;
 	}
 	
 	@RequestMapping(value = "order/" , method = RequestMethod.POST)
 	public void save(@RequestBody Order order){
 		order.setTotalPrice(countTotalPrice(order.getProducts()));
-		log.info("Storing customer in database {}", order);
+		log.info("Storing order in database {}", order);
 		orderRepository.save(order);
 	}
 	
