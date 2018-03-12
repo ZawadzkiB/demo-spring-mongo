@@ -4,6 +4,8 @@ import com.infoshare.academy.model.Order;
 import com.infoshare.academy.repository.OrderRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,15 +21,15 @@ public class OrderRestController {
 
 
 	@RequestMapping(value = "order/", method = RequestMethod.GET)
-	public List<Order> findAll(){
-		final List<Order> orders = orderRepository.findAll();
-		log.info("Fetching orders from database {}" , orders.stream().map(Order::getId));
-		return orders;
+	public List<Order> findAll(@RequestParam int page){
+		Page<Order> orders = orderRepository.findAll(new PageRequest(page,20));
+		log.info("Fetching orders from database {}" , orders.getContent().stream().map(Order::getId));
+		return orders.getContent();
 	}
 
 	@RequestMapping(value = "order/customer/{customerId}", method = RequestMethod.GET)
 	public List<Order> findByCustomerId(@PathVariable String customerId){
-		final List<Order> orders = orderRepository.findAllByCustomerId(customerId);
+		List<Order> orders = orderRepository.findAllByCustomerId(customerId);
 		log.info("Fetching orders from database {}" , orders.stream().map(Order::getId));
 		return orders;
 	}
