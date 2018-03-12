@@ -21,21 +21,21 @@ public class OrderRestController {
 	@RequestMapping(value = "order/", method = RequestMethod.GET)
 	public List<Order> findAll(){
 		final List<Order> orders = orderRepository.findAll();
-		log.info("Fetching orders from database {}" , orders);
+		log.info("Fetching orders from database {}" , orders.stream().map(Order::getId));
 		return orders;
 	}
 
 	@RequestMapping(value = "order/customer/{customerId}", method = RequestMethod.GET)
 	public List<Order> findByCustomerId(@PathVariable String customerId){
 		final List<Order> orders = orderRepository.findAllByCustomerId(customerId);
-		log.info("Fetching orders from database {}" , orders);
+		log.info("Fetching orders from database {}" , orders.stream().map(Order::getId));
 		return orders;
 	}
 	
 	@RequestMapping(value = "order/" , method = RequestMethod.POST)
 	public void save(@RequestBody Order order){
 		order.setTotalPrice(countTotalPrice(order.getProducts()));
-		log.info("Storing order in database {}", order);
+		log.info("Storing order in database {}", order.getId());
 		orderRepository.save(order);
 	}
 	
