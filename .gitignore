@@ -16,3 +16,7 @@ Guardfile
 README.html
 *.iml
 .idea
+.DS_Store
+*.log
+*.jtl
+dashboard
