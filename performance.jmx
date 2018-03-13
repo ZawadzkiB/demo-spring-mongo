@@ -59,7 +59,7 @@
         <longProp name="ThreadGroup.start_time">1520887037000</longProp>
         <longProp name="ThreadGroup.end_time">1520887037000</longProp>
         <boolProp name="ThreadGroup.scheduler">true</boolProp>
-        <stringProp name="ThreadGroup.duration">60</stringProp>
+        <stringProp name="ThreadGroup.duration">120</stringProp>
         <stringProp name="ThreadGroup.delay"></stringProp>
       </ThreadGroup>
       <hashTree>
@@ -154,20 +154,20 @@
                 <boolProp name="HTTPArgument.always_encode">false</boolProp>
                 <stringProp name="Argument.value">{&#xd;
   &quot;customer&quot;: {&#xd;
-    &quot;address&quot;: &quot;string&quot;,&#xd;
-    &quot;city&quot;: &quot;string&quot;,&#xd;
-    &quot;country&quot;: &quot;string&quot;,&#xd;
-    &quot;firstName&quot;: &quot;string&quot;,&#xd;
-    &quot;id&quot;: &quot;string&quot;,&#xd;
-    &quot;lastName&quot;: &quot;string&quot;,&#xd;
-    &quot;postCode&quot;: &quot;string&quot;&#xd;
+    &quot;address&quot;: &quot;${cust_addr}&quot;,&#xd;
+    &quot;city&quot;: &quot;${cust_city}&quot;,&#xd;
+    &quot;country&quot;: &quot;Poland&quot;,&#xd;
+    &quot;firstName&quot;: &quot;unknow&quot;,&#xd;
+    &quot;id&quot;: &quot;${customer_id}&quot;,&#xd;
+    &quot;lastName&quot;: &quot;unknow&quot;,&#xd;
+    &quot;postCode&quot;: &quot;80-000&quot;&#xd;
   },&#xd;
   &quot;id&quot;: &quot;${order_id}&quot;,&#xd;
   &quot;products&quot;: [&#xd;
     {&#xd;
-      &quot;id&quot;: &quot;string&quot;,&#xd;
-      &quot;name&quot;: &quot;string&quot;,&#xd;
-      &quot;price&quot;: 0&#xd;
+      &quot;id&quot;: &quot;${product_id}&quot;,&#xd;
+      &quot;name&quot;: &quot;${product_name}&quot;,&#xd;
+      &quot;price&quot;: ${price}&#xd;
     }&#xd;
   ],&#xd;
   &quot;totalPrice&quot;: 0&#xd;
@@ -192,13 +192,34 @@
         </HTTPSamplerProxy>
         <hashTree>
           <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
-            <stringProp name="maximumValue">6666666</stringProp>
+            <stringProp name="maximumValue">22222222</stringProp>
             <stringProp name="minimumValue">1</stringProp>
             <stringProp name="outputFormat"></stringProp>
             <boolProp name="perThread">true</boolProp>
             <stringProp name="randomSeed"></stringProp>
             <stringProp name="variableName">order_id</stringProp>
           </RandomVariableConfig>
+          <hashTree/>
+          <RandomVariableConfig guiclass="TestBeanGUI" testclass="RandomVariableConfig" testname="Random Variable" enabled="true">
+            <stringProp name="variableName">customer_id</stringProp>
+            <stringProp name="outputFormat"></stringProp>
+            <stringProp name="minimumValue">1</stringProp>
+            <stringProp name="maximumValue">777777777</stringProp>
+            <stringProp name="randomSeed"></stringProp>
+            <boolProp name="perThread">true</boolProp>
+          </RandomVariableConfig>
+          <hashTree/>
+          <CSVDataSet guiclass="TestBeanGUI" testclass="CSVDataSet" testname="CSV Data Set Config" enabled="true">
+            <stringProp name="filename">/Users/zawadzkibartek/repos/isa/mongo-springboot/data.csv</stringProp>
+            <stringProp name="fileEncoding">utf-8</stringProp>
+            <stringProp name="variableNames"></stringProp>
+            <boolProp name="ignoreFirstLine">false</boolProp>
+            <stringProp name="delimiter">,</stringProp>
+            <boolProp name="quotedData">false</boolProp>
+            <boolProp name="recycle">true</boolProp>
+            <boolProp name="stopThread">false</boolProp>
+            <stringProp name="shareMode">shareMode.all</stringProp>
+          </CSVDataSet>
           <hashTree/>
         </hashTree>
       </hashTree>
